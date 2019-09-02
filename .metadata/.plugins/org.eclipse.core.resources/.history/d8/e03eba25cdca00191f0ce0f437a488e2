@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page session="false" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="./createDB" target="main">íì´ë¸ ìì±</a><br>
+<a href="./allsetDB" target="main">ë°ì´í° ìì±</a><br>	
+<a href="./dropDB" target="main">íì´ë¸ ì­ì </a><br>	
+<a href="./allviewDB" target="main">ì ì²´ ë°ì´í°</a><br>	
+</body>
+</html>

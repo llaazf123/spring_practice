@@ -1,0 +1,5 @@
+package kopo.dao;
+
+public class ExamRepoImpl {
+
+}

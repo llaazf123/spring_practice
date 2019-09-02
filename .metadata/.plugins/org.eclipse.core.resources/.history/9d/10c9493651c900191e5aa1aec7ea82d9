@@ -1,0 +1,87 @@
+package kopo.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
+import kopo.domain.ExamRIO;
+
+public class ExamRepo {
+	public static Connection getConnection() {
+		Connection con=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://192.168.23.104:3306/kopoctc?characterEncoding=UTF-8&serverTimezone=UTC", "root", "kopo17");
+		}catch(Exception e) {System.out.println(e);}
+		return con;
+	}
+	public static int createDB() {
+		int status=0;
+		try {
+			Connection con=getConnection();
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(
+					"create table examtable(name varchar(20), studentid int not null primary key, kor int, eng int, mat int) DEFAULT CHARSET=utf8;");
+			stmt.close();
+			con.close();
+		
+		}catch(Exception e) {System.out.println(e);}
+		return status;
+	}
+	public static int dropDB() {
+		int status=0;
+		try {
+			Connection con=getConnection();
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(
+					"drop table examtable;");
+			stmt.close();
+			con.close();
+			
+		}catch(Exception e) {System.out.println(e);}
+			return status;
+	}
+	public static int insert(ExamRIO e) {
+		int status=0;
+		try {
+			Connection con = getConnection();
+			PreparedStatement ps = con.prepareStatement(
+					"insert into examtable(name, studentid, kor, eng, mat) values(?,?,?,?,?)");
+			ps.setString(1,  e.getName());
+			ps.setInt(2, e.getStudentid());
+			ps.setInt(3, e.getKor());
+			ps.setInt(4, e.getEng());
+			ps.setInt(5, e.getMat());
+			status=ps.executeUpdate();
+			ps.close();
+			con.close();
+		}catch(Exception e) {System.out.println(e);}
+		return status;
+	}
+	public static update(ExamRIO e) {
+		int status=0;
+		try {
+			Connection con = getConnection();
+			PreparedStatement ps = con.prepareStatement(
+					"update examtable set name=?,studentid=?,kor=?,eng=?,math=? where studentid=?");
+			ps.setString(1, e.getName());
+			ps.setInt(2, e.getStudentid());
+			ps.setInt(3, e.getKor());
+			ps.setInt(4, e.getEng());
+			ps.setInt(5, e.getMat());
+			ps.setInt(6, e.getStudentid());
+			status = ps.executeUpdate();
+			ps.close();
+			con.close();
+		}catch(Exception e) {System.out.println(e);}
+			return status;
+	}
+	public static delete(EXAMRIO e) {
+		return 0;
+	
+	}public static List<ExamRIO> getAllRecord(){
+		return null;
+	}
+	
+}

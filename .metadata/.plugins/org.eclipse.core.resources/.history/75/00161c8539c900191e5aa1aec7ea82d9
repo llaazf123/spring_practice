@@ -1,0 +1,9 @@
+package kopo.domain;
+
+public class ExamRIO {
+	private String name;
+	private int studentid;
+	private int kor;
+	private int eng;
+	private int mat;
+}

@@ -1,0 +1,5 @@
+package kopo.dto;
+
+public class ExamScore {
+
+}

@@ -1,0 +1,114 @@
+package kopo.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import kopo.domain.ExamRIO;
+
+
+@Repository
+public class ExamRepo {
+	private static final Logger logger = LoggerFactory.getLogger(ExamRepo.class);
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate; 
+	
+	public void createDB() throws Exception {	//DB생성
+		logger.info("DAO--- createDB");
+		String query = "create table examtable("
+				+ "name varchar(20), studentid int not null primary key,"
+				+ " kor int, eng int, mat int) DEFAULT CHARSET=utf8";
+		jdbcTemplate.execute(query);		
+	}
+	
+	public void dropDB() throws Exception{	//DB삭제
+		logger.info("DAO--- dropDB");
+		String query="drop table examtable";
+		jdbcTemplate.execute(query);		
+	}
+	
+	public int insert(ExamRIO u) throws Exception{	//데이터 삽입
+		logger.info("DAO insert");
+		return jdbcTemplate.update(
+				"insert into examtable(name, studentid, kor, eng, mat) values(?,?,?,?,?)"
+				, u.getName(), u.getStudentid(), u.getKor(), u.getEng(), u.getMat());
+	}
+	
+	public void update(ExamRIO u) throws Exception{
+		String query="update examtable set name=?,studentid=?,kor=?,eng=?,math=? where studentid=?;";
+		jdbcTemplate.update(query, u.getName(), u.getStudentid(), u.getKor(), u.getEng(), u.getMat(), u.getStudentid());
+	}
+				
+	public void delete(ExamRIO u) throws Exception{
+		String query="delete from examtable where studentid=?";
+		jdbcTemplate.update(query, u.getStudentid());
+	}
+		
+	public List<ExamRIO> getAllRecords() throws Exception{
+		logger.info("DAO getAllRecords");
+		List<ExamRIO> results=jdbcTemplate.query(
+				"select * from examtable",
+				new RowMapper<ExamRIO>() {
+					@Override
+					public ExamRIO mapRow(ResultSet rs, int rowNum) throws SQLException{
+						ExamRIO u = new ExamRIO();
+						u.setName(rs.getString("name"));
+						u.setStudentid(rs.getInt("studentid"));
+						u.setKor(rs.getInt("kor"));
+						u.setEng(rs.getInt("eng"));
+						u.setMat(rs.getInt("mat"));
+						
+						return u;
+					}		
+				});
+		return results;	
+	}
+		
+	
+	public static Connection getConnection() {	//db연결부
+		Connection con=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://192.168.23.104:3306/kopoctc?characterEncoding=UTF-8&serverTimezone=UTC", "root", "kopo17");
+		}catch(Exception e) {System.out.println(e);}
+		return con;
+	}
+	
+
+
+	
+	public static ExamRIO getRecordById(int id) {
+		ExamRIO u = new ExamRIO();
+		try {
+			Connection con = getConnection();
+			PreparedStatement ps = con.prepareStatement("select * from examtable where studentid=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				u.setName(rs.getString("name"));
+				u.setStudentid(rs.getInt("studentid"));
+				u.setKor(rs.getInt("kor"));
+				u.setEng(rs.getInt("eng"));
+				u.setMat(rs.getInt("mat"));
+			}
+			rs.close();
+			ps.close();
+			con.close();
+		}catch(Exception e) {System.out.println(e);}
+		return u;
+	}
+	
+}

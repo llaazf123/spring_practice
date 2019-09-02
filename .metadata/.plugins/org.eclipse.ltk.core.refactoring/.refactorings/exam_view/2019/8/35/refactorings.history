@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ExamRIO.java&apos; to &apos;exam_view2/src/main/java/kopo.domain&apos;&#x0D;&#x0A;- Original project: &apos;exam_view&apos;&#x0D;&#x0A;- Destination element: &apos;exam_view2/src/main/java/kopo.domain&apos;&#x0D;&#x0A;- Original element: &apos;kopo.domain.ExamRIO.java&apos;" description="Copy compilation unit" destination="=exam_view2/src\/main\/java&lt;kopo.domain" element1="/src\/main\/java&lt;kopo.domain{ExamRIO.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1567056142294" units="1" version="1.0"/>
+</session>
