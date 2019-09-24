@@ -13,6 +13,6 @@ public interface ExamRepo {
 	void updateOne(ExamRIO exam);
 	void deleteOne(ExamRIO exam);
 	int deleteAll();
-	void createDB();
-	void dropDB();
+	void createDB() throws Exception;
+	void dropDB() throws Exception;
 }

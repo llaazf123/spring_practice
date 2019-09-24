@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class ExamRIO {
 	
 	@Id	//Id는 키 필드
-//	@GeneratedValue(strategy = GenerationType.AUTO) //auto increase 필드
+//	@GeneratedValue(strategy = GenerationType.AUTO) //기본키 pk설정할 때 사용
 	@Column(name="studentid")	//column은 말그대로 컬럼
 	private int studentid;
 	

@@ -1,8 +1,10 @@
 package kopo.exam.hibernate.dao;
 
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -111,7 +113,7 @@ public class ExamRepoImpl implements ExamRepo {
 	}
 
 	@Override
-	public void createDB() {	//테이블 생성
+	public void createDB() throws Exception {	//테이블 생성
 		// TODO Auto-generated method stub
 		// 하이버네이트 세션상태에서 테이블을 생성하고 지우고하는 DDL-sql을 적용할수 없는듯.
 		// 하이버네이트 세션에서 커넥션을 얻어다 sql을 날림
@@ -119,28 +121,24 @@ public class ExamRepoImpl implements ExamRepo {
 		// 이런식으로 쓴다면 sql도 하이버네이트에서 쓰는 것이 가능.
 		
 		Statement stmt;
-		try {
+		
 			stmt = ((SessionImpl) getSession()).connection().createStatement();
 			stmt.execute("create table examtable(name varchar(20), studentid int not null primary key,"
 			+ " kor int, eng int, mat int) DEFAULT CHARSET=utf8;");
 			stmt.close();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	@Override
-	public void dropDB() {	//테이블 삭제
+	public void dropDB() throws Exception {	//테이블 삭제
 		// TODO Auto-generated method stub
 		//createDB와 같은 방법으로 한다.
 		Statement stmt;
-		try {
+	
 			stmt = ((SessionImpl) getSession()).connection().createStatement();
 			stmt.execute("drop table examtable;");
 			stmt.close();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 }
 	

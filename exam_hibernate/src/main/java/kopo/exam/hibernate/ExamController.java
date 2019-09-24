@@ -64,11 +64,11 @@ public class ExamController {
 		String ret=null;
 		try {
 			service.allsetDB();
-			ret="DB create 성공";
+			ret="DB insert 성공";
 			
 		}catch(Exception e) {
 			e.printStackTrace();
-			ret="DB create실패" + e;
+			ret="DB insert 실패" + e;
 		}
 		model.addAttribute("msg", ret);
 		

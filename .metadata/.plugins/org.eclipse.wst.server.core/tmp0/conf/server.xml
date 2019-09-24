@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\exam_jdbc" path="/jdbc" reloadable="true" source="org.eclipse.jst.jee.server:exam_jdbc"/><Context docBase="C:\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\exam_hibernate" path="/hibernate" reloadable="true" source="org.eclipse.jst.jee.server:exam_hibernate"/></Host>
+      <Context docBase="C:\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\polytech" path="/polytech" reloadable="true" source="org.eclipse.jst.jee.server:polytech"/><Context docBase="C:\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\exam_hibernate" path="/hibernate" reloadable="true" source="org.eclipse.jst.jee.server:exam_hibernate"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -10,6 +10,7 @@
 </head>
 <body>
 	<h3>테이블 삭제.</h3>
+	<hr>
 	${msg}
 	
 </body>
