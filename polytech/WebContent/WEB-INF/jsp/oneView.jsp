@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -81,7 +82,7 @@ padding: 8px;
 			<td width=50><p align=center>${oneView.name}</p></td>
 			<td width=50><p align=center>${oneView.old}</p></td>
 			<td width=50><p align=center>${oneView.address}</p></td>
-			<td width=50><p align=center>${oneView.createdDate}</p></td>
+			<td width=50><p align=center><fmt:formatDate value="${oneView.createdDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p></td>
 		</tr>
 		<tr align=right>
 			<td colspan=5>

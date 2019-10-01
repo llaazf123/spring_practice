@@ -1,5 +1,7 @@
 package kr.co.uclick.controller;
 
+import java.text.SimpleDateFormat;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +65,9 @@ public class EntityController {
 	}
 		
 	@GetMapping(value = "oneView.html/{userId}")	//@RequestMapping(method = RequestMethod.GET) 의 축약형, //상세보기
-	public String list(@PathVariable("userId") Long userId, Model model) {
+	public String list(@PathVariable("userId") Long userId, UserEntity userEntity, Model model) {
 		model.addAttribute("oneView", userEntityService.findUserEntityByUserId(userId));
+		
 		return "oneView";
 	}
 	

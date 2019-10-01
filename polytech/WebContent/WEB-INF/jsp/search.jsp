@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,7 +59,7 @@
 							<td width=50><p align=center><a href="oneView.html/${findPhoneEntityByPhoneNumber.userEntity.userId}">${findPhoneEntityByPhoneNumber.userEntity.name}</a></p></td>
 							<td width=50><p align=center>${findPhoneEntityByPhoneNumber.userEntity.old}</p></td>
 							<td width=50><p align=center>${findPhoneEntityByPhoneNumber.userEntity.address}</p></td>
-							<td width=50><p align=center>${findPhoneEntityByPhoneNumber.userEntity.createdDate}</p></td>
+							<td width=50><p align=center><fmt:formatDate value="${findPhoneEntityByPhoneNumber.userEntity.createdDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p></td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
@@ -83,13 +84,12 @@
 					<td width=50><p align=center>등록 및 수정된 날짜</p></td>
 				</tr>
 				<c:forEach items="${findUserEntityByName}" var="e">
-
 					<tr>
 						<td width=50><p align=center>${e.userId}</p></td>
 						<td width=50><p align=center><a href="oneView.html/${e.userId}">${e.name}</a></p></td>
 						<td width=50><p align=center>${e.old}</p></td>
 						<td width=50><p align=center>${e.address}</p></td>
-						<td width=50><p align=center>${e.createdDate}</p></td>
+						<td width=50><p align=center><fmt:formatDate value="${e.createdDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
